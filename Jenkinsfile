@@ -1,10 +1,16 @@
 pipeline {
     agent any
+
+    tools {
+        maven 'Maven 3.9'
+        jdk 'JDK17'
+    }
+
     stages {
 
         stage('Build') {
             steps {
-                bat 'mvn compile'
+                bat 'mvn compile -DskipTests'
             }
         }
 
@@ -19,11 +25,12 @@ pipeline {
             }
         }
 
-stage('Deploy Nexus') {
-    steps {
-        bat 'mvn deploy -s "C:\\Users\\TON_NOM\\.m2\\settings.xml" -DskipTests'
-    }
-}
+        stage('Couverture JaCoCo') {
+            steps {
+                bat 'mvn jacoco:report'
+            }
+        }
+
         stage('Documentation') {
             steps {
                 bat 'mvn site -DskipTests'
@@ -34,12 +41,27 @@ stage('Deploy Nexus') {
             steps {
                 bat 'mvn package -DskipTests'
             }
+            post {
+                success {
+                    archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                }
+            }
         }
 
         stage('Deploy Nexus') {
             steps {
                 bat 'mvn deploy -DskipTests'
             }
+        }
+
+    }
+
+    post {
+        failure {
+            echo '❌ Pipeline échoué !'
+        }
+        success {
+            echo '✅ Pipeline réussi !'
         }
     }
 }
