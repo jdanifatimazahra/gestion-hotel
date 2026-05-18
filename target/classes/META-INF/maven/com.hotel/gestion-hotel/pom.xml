@@ -124,6 +124,7 @@
     <artifactId>maven-pmd-plugin</artifactId>
     <version>3.21.2</version>
 </plugin>
+
 <plugin>
     <groupId>org.jacoco</groupId>
     <artifactId>jacoco-maven-plugin</artifactId>
