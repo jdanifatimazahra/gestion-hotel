@@ -19,9 +19,9 @@ pipeline {
             }
         }
 
-stage('Couverture de Code') {
+stage('Deploy Nexus') {
     steps {
-        bat 'mvn org.jacoco:jacoco-maven-plugin:0.8.11:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.11:report'
+        bat 'mvn deploy -s "C:\\Users\\TON_NOM\\.m2\\settings.xml" -DskipTests'
     }
 }
         stage('Documentation') {
