@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.GestionReservationsController"
+            stylesheets="@application.css">
+
+    <!-- ══ HEADER ══════════════════════════════════════════════ -->
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="15">
+            <Button fx:id="btnRetour" text="← Retour"
+                    styleClass="button, button-reservations"
+                    onAction="#handleRetour"/>
+            <Label text="📅 Gestion des Réservations" styleClass="header-label"/>
+        </HBox>
+    </top>
+
+    <!-- ══ CENTRE ══════════════════════════════════════════════ -->
+    <center>
+        <HBox spacing="20" style="-fx-padding: 20;">
+
+            <!-- ── Table + Recherche ─────────────────────────── -->
+            <VBox spacing="12" HBox.hgrow="ALWAYS">
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="fieldSearch"
+                               promptText="🔍 Rechercher par client, chambre ou statut…"
+                               styleClass="field-search" HBox.hgrow="ALWAYS"
+                               onAction="#handleSearch"/>
+                    <Button text="Rechercher"
+                            styleClass="button, button-clients"
+                            onAction="#handleSearch"/>
+                </HBox>
+
+                <TableView fx:id="tableReservations" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId"      text="ID"       prefWidth="45"/>
+                        <TableColumn fx:id="colClient"  text="Client"   prefWidth="150"/>
+                        <TableColumn fx:id="colChambre" text="Ch."      prefWidth="55"/>
+                        <TableColumn fx:id="colType"    text="Type"     prefWidth="90"/>
+                        <TableColumn fx:id="colArrivee" text="Arrivée"  prefWidth="100"/>
+                        <TableColumn fx:id="colDepart"  text="Départ"   prefWidth="100"/>
+                        <TableColumn fx:id="colStatut"  text="Statut"   prefWidth="110"/>
+                        <TableColumn fx:id="colPrix"    text="Total MAD" prefWidth="100"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Aucune réservation."
+                               style="-fx-text-fill:rgba(255,255,255,0.5);"/>
+                    </placeholder>
+                </TableView>
+
+                <!-- Actions rapides statut + bouton PDF -->
+                <HBox spacing="10">
+                    <Button text="✅ Confirmer"
+                            styleClass="button, button-clients"
+                            onAction="#handleConfirmer"/>
+                    <Button text="❌ Annuler"
+                            styleClass="button, button-logout"
+                            onAction="#handleAnnuler"/>
+                    <Button text="🗑 Supprimer"
+                            styleClass="button, button-logout"
+                            onAction="#handleDelete"/>
+                    <!-- ══ NOUVEAU ══ -->
+                    <Button fx:id="btnFacture"
+                            text="🧾 Facture PDF"
+                            styleClass="button, button-chambres"
+                            onAction="#handleFacture"
+                            disable="true"/>
+                </HBox>
+
+                <Label fx:id="labelStatus" styleClass="label-status"/>
+
+            </VBox>
+
+            <!-- ── Formulaire ────────────────────────────────── -->
+            <VBox styleClass="form-card" spacing="12" minWidth="290" maxWidth="290">
+
+                <Label text="Nouvelle Réservation" styleClass="form-title"/>
+                <Separator style="-fx-background-color:rgba(255,255,255,0.15);"/>
+
+                <Label text="Client *" styleClass="field-label"/>
+                <ComboBox fx:id="comboClient" maxWidth="Infinity"/>
+
+                <Label text="Date d'arrivée *" styleClass="field-label"/>
+                <DatePicker fx:id="dateArrivee" maxWidth="Infinity"/>
+
+                <Label text="Date de départ *" styleClass="field-label"/>
+                <DatePicker fx:id="dateDepart" maxWidth="Infinity"/>
+
+                <Label text="Chambre *" styleClass="field-label"/>
+                <ComboBox fx:id="comboChambre" maxWidth="Infinity"/>
+
+                <Label text="Statut" styleClass="field-label"/>
+                <ComboBox fx:id="comboStatut" maxWidth="Infinity"/>
+
+                <Label fx:id="lblPrixCalc" text="Prix : —"
+                       style="-fx-text-fill:#2ed573; -fx-font-weight:bold;"/>
+
+                <VBox spacing="8" style="-fx-padding: 8 0 0 0;">
+                    <Button text="➕  Créer"
+                            styleClass="button, button-clients"
+                            onAction="#handleAdd" maxWidth="Infinity"/>
+                    <Button text="✏  Modifier"
+                            styleClass="button, button-chambres"
+                            onAction="#handleUpdate" maxWidth="Infinity"/>
+                </VBox>
+
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

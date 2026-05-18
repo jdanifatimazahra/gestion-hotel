@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.LoginController"
+           stylesheets="@application.css"
+           style="-fx-background-color: #1e2330;">
+
+    <VBox styleClass="login-card" spacing="18" alignment="CENTER">
+
+        <!-- Logo / Titre -->
+        <Label text="🏨" style="-fx-font-size: 42;"/>
+        <Label text="Hôtel Manager"
+               style="-fx-text-fill: white; -fx-font-size: 22; -fx-font-weight: bold;"/>
+        <Label text="Connectez-vous à votre espace"
+               style="-fx-text-fill: rgba(255,255,255,0.5); -fx-font-size: 12;"/>
+
+        <Separator style="-fx-background-color: #2f3b6e;"/>
+
+        <VBox spacing="8">
+            <Label text="Email" styleClass="field-label"/>
+            <TextField fx:id="emailField" promptText="email@hotel.ma"
+                       styleClass="field-input" prefWidth="260"/>
+        </VBox>
+
+        <VBox spacing="8">
+            <Label text="Mot de passe" styleClass="field-label"/>
+            <PasswordField fx:id="passwordField" promptText="••••••••"
+                           styleClass="field-input" prefWidth="260"/>
+        </VBox>
+
+        <!-- Bouton Se connecter -->
+        <Button text="Se connecter →"
+                styleClass="button, button-clients"
+                onAction="#login"
+                prefWidth="260"
+                prefHeight="40"/>
+
+        <Separator style="-fx-background-color: #2f3b6e;"/>
+
+        <!-- Bouton S'inscrire (nouveau client) -->
+        <Label text="Pas encore de compte ?"
+               style="-fx-text-fill: rgba(255,255,255,0.45); -fx-font-size: 11;"/>
+        <Button text="S'inscrire comme client"
+                styleClass="button, button-reservations"
+                onAction="#goToInscription"
+                prefWidth="260"
+                prefHeight="36"/>
+
+    </VBox>
+
+</StackPane>

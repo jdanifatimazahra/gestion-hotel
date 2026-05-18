@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.AdminDashboardController"
+            stylesheets="@application.css">
+
+    <!-- ══ HEADER ══════════════════════════════════════════════ -->
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="15">
+            <Label text="🏨 Hôtel Manager — Dashboard Admin" styleClass="header-label"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnLogout" text="⏻ Déconnexion"
+                    styleClass="button, button-logout"
+                    onAction="#logout"/>
+        </HBox>
+    </top>
+
+    <!-- ══ CENTRE ══════════════════════════════════════════════ -->
+    <center>
+        <VBox spacing="30" alignment="TOP_CENTER" style="-fx-padding: 30;">
+
+            <!-- ── Statistiques ───────────────────────────────── -->
+            <HBox spacing="20" alignment="CENTER">
+
+                <VBox styleClass="stat-card" alignment="CENTER" spacing="6">
+                    <Label text="⏳ En attente" styleClass="stat-title"/>
+                    <Label fx:id="lblStatEnAttente" text="…" styleClass="stat-value"/>
+                </VBox>
+
+                <VBox styleClass="stat-card" alignment="CENTER" spacing="6">
+                    <Label text="✅ Confirmées" styleClass="stat-title"/>
+                    <Label fx:id="lblStatConfirmees" text="…" styleClass="stat-value"/>
+                </VBox>
+
+                <VBox styleClass="stat-card" alignment="CENTER" spacing="6">
+                    <Label text="❌ Annulées" styleClass="stat-title"/>
+                    <Label fx:id="lblStatAnnulees" text="…" styleClass="stat-value"/>
+                </VBox>
+
+                <VBox styleClass="stat-card" alignment="CENTER" spacing="6">
+                    <Label text="💰 Revenu confirmé" styleClass="stat-title"/>
+                    <Label fx:id="lblStatRevenu" text="…" styleClass="stat-value"/>
+                </VBox>
+
+            </HBox>
+
+            <!-- ── Boutons de navigation ──────────────────────── -->
+            <HBox spacing="20" alignment="CENTER">
+
+                <Button fx:id="btnClients"
+                        text="👥  Gérer Clients"
+                        styleClass="button, button-clients"
+                        prefWidth="180" prefHeight="60"
+                        onAction="#openClients"/>
+
+                <Button fx:id="btnChambres"
+                        text="🛏  Gérer Chambres"
+                        styleClass="button, button-chambres"
+                        prefWidth="180" prefHeight="60"
+                        onAction="#openChambres"/>
+
+                <Button fx:id="btnReservations"
+                        text="📅  Gérer Réservations"
+                        styleClass="button, button-reservations"
+                        prefWidth="180" prefHeight="60"
+                        onAction="#openReservations"/>
+
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

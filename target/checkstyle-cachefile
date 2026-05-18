@@ -1,0 +1,4 @@
+#Mon May 18 17:03:15 GMT+01:00 2026
+configuration*?=5DD34D73AF4B91101B36166405747A547B514AF7
+module-resource*?\:checkstyle-suppressions.xml=590E859F37A473BACA21B25B87CB6AB55B0C8019
+module-resource*?\:checkstyle-xpath-suppressions.xml=6933B3494554F105BDDFBA8198FB1B9085F53344

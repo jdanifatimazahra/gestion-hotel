@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.GestionChambresController"
+            stylesheets="@application.css">
+
+    <!-- ══ HEADER ══════════════════════════════════════════════ -->
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="15">
+            <Button fx:id="btnRetour" text="← Retour"
+                    styleClass="button, button-reservations"
+                    onAction="#handleRetour"/>
+            <Label text="🛏 Gestion des Chambres" styleClass="header-label"/>
+        </HBox>
+    </top>
+
+    <!-- ══ CENTRE ══════════════════════════════════════════════ -->
+    <center>
+        <HBox spacing="20" style="-fx-padding: 20;">
+
+            <!-- ── Table + Recherche ─────────────────────────── -->
+            <VBox spacing="12" HBox.hgrow="ALWAYS">
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="fieldSearch"
+                               promptText="🔍 Rechercher par numéro ou type..."
+                               styleClass="field-search"
+                               HBox.hgrow="ALWAYS"
+                               onAction="#handleSearch"/>
+                    <Button text="Rechercher"
+                            styleClass="button, button-clients"
+                            onAction="#handleSearch"/>
+                </HBox>
+
+                <TableView fx:id="tableChambres" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId"       text="ID"         prefWidth="45"/>
+                        <TableColumn fx:id="colNumero"   text="N°"         prefWidth="70"/>
+                        <TableColumn fx:id="colType"     text="Type"       prefWidth="100"/>
+                        <TableColumn fx:id="colPrix"     text="Prix/Nuit"  prefWidth="100"/>
+                        <TableColumn fx:id="colCapacite" text="Capacité"   prefWidth="80"/>
+                        <TableColumn fx:id="colDispo"    text="Disponible" prefWidth="90"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Aucune chambre trouvée."
+                               style="-fx-text-fill:rgba(255,255,255,0.5);"/>
+                    </placeholder>
+                </TableView>
+
+                <Label fx:id="labelStatus" styleClass="label-status"/>
+
+            </VBox>
+
+            <!-- ── Formulaire ────────────────────────────────── -->
+            <VBox styleClass="form-card" spacing="12" minWidth="290" maxWidth="290">
+
+                <Label text="Informations Chambre" styleClass="form-title"/>
+                <Separator style="-fx-background-color:rgba(255,255,255,0.15);"/>
+
+                <Label text="Numéro *" styleClass="field-label"/>
+                <TextField fx:id="fieldNumero" promptText="ex : 101" styleClass="field-input"/>
+
+                <Label text="Type *" styleClass="field-label"/>
+                <ComboBox fx:id="comboType" maxWidth="Infinity"/>
+
+                <Label text="Prix / nuit (MAD) *" styleClass="field-label"/>
+                <TextField fx:id="fieldPrix" promptText="350.00" styleClass="field-input"/>
+
+                <Label text="Capacité *" styleClass="field-label"/>
+                <TextField fx:id="fieldCapacite" promptText="2" styleClass="field-input"/>
+
+                <Label text="Description" styleClass="field-label"/>
+                <TextArea fx:id="fieldDescription" promptText="Vue, équipements…"
+                          styleClass="field-input" prefRowCount="3"/>
+
+                <CheckBox fx:id="checkDispo" text="Disponible" selected="true"
+                          style="-fx-text-fill:white;"/>
+
+                <VBox spacing="8" style="-fx-padding: 8 0 0 0;">
+                    <Button text="➕  Ajouter"
+                            styleClass="button, button-clients"
+                            onAction="#handleAdd" maxWidth="Infinity"/>
+                    <Button text="✏  Modifier"
+                            styleClass="button, button-chambres"
+                            onAction="#handleUpdate" maxWidth="Infinity"/>
+                    <Button text="🗑  Supprimer"
+                            styleClass="button, button-logout"
+                            onAction="#handleDelete" maxWidth="Infinity"/>
+                </VBox>
+
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

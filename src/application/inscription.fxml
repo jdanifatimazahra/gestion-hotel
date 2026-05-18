@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.InscriptionController"
+           stylesheets="@application.css"
+           style="-fx-background-color: #1e2330;">
+
+    <VBox styleClass="login-card" spacing="14" alignment="CENTER"
+          style="-fx-max-width: 340; -fx-max-height: 560;">
+
+        <!-- Titre -->
+        <Label text="🏨" style="-fx-font-size: 36;"/>
+        <Label text="Créer un compte"
+               style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"/>
+        <Label text="Remplissez vos informations"
+               style="-fx-text-fill: rgba(255,255,255,0.5); -fx-font-size: 12;"/>
+
+        <Separator style="-fx-background-color: #2f3b6e;"/>
+
+        <!-- Message d'erreur / succès -->
+        <Label fx:id="labelStatus" text="" wrapText="true"
+               style="-fx-font-size: 12; -fx-padding: 4 10 4 10; -fx-background-radius: 4;"
+               prefWidth="260"/>
+
+        <VBox spacing="6">
+            <Label text="Nom" styleClass="field-label"/>
+            <TextField fx:id="fieldNom" promptText="ex: jdani"
+                       styleClass="field-input" prefWidth="260"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Prénom" styleClass="field-label"/>
+            <TextField fx:id="fieldPrenom" promptText="ex: fati"
+                       styleClass="field-input" prefWidth="260"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Email" styleClass="field-label"/>
+            <TextField fx:id="fieldEmail" promptText="email@exemple.com"
+                       styleClass="field-input" prefWidth="260"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Téléphone" styleClass="field-label"/>
+            <TextField fx:id="fieldTelephone" promptText="06••••••••"
+                       styleClass="field-input" prefWidth="260"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Mot de passe" styleClass="field-label"/>
+            <PasswordField fx:id="fieldPassword" promptText="••••••"
+                           styleClass="field-input" prefWidth="260"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Confirmer le mot de passe" styleClass="field-label"/>
+            <PasswordField fx:id="fieldConfirm" promptText="••••••"
+                           styleClass="field-input" prefWidth="260"/>
+        </VBox>
+
+        <!-- Bouton S'inscrire -->
+        <Button text="S'inscrire →"
+                styleClass="button, button-reservations"
+                onAction="#handleInscription"
+                prefWidth="260"
+                prefHeight="38"/>
+
+        <!-- Retour login -->
+        <Button text="← Déjà un compte ? "
+                styleClass="button, button-logout"
+                onAction="#handleRetourLogin"
+                prefWidth="260"
+                prefHeight="36"/>
+        <Label fx:id="labelStatus" text="" wrapText="true"
+       styleClass="label-status"
+       prefWidth="260"/>
+
+    </VBox>
+
+</StackPane>

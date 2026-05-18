@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ClientDashboardController"
+            stylesheets="@application.css">
+
+    <!-- ══ HEADER ══════════════════════════════════════════════ -->
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="15">
+            <Label text="🏨 Hôtel Manager — Espace Client" styleClass="header-label"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnLogout" text="⏻ Déconnexion"
+                    styleClass="button, button-logout"
+                    onAction="#logout"/>
+        </HBox>
+    </top>
+
+    <!-- ══ MENU GAUCHE ═════════════════════════════════════════ -->
+    <left>
+        <VBox spacing="12" style="-fx-background-color:#16213e; -fx-padding:25; -fx-min-width:200;">
+
+            <Label text="Navigation"
+                   style="-fx-text-fill:rgba(255,255,255,0.45); -fx-font-size:11;
+                          -fx-font-weight:bold; -fx-padding: 0 0 8 0;"/>
+
+            <Button text="📅  Mes Réservations"
+                    styleClass="button, button-reservations"
+                    maxWidth="Infinity"
+                    prefHeight="42"
+                    onAction="#openReservations"/>
+
+            <Button text="👤  Mon Profil"
+                    styleClass="button, button-clients"
+                    maxWidth="Infinity"
+                    prefHeight="42"
+                    onAction="#openProfile"/>
+
+        </VBox>
+    </left>
+
+    <!-- ══ CONTENU CENTRE ══════════════════════════════════════ -->
+    <center>
+        <VBox alignment="CENTER" spacing="20" style="-fx-padding: 40;">
+
+            <Label text="🏨"  style="-fx-font-size: 56;"/>
+            <Label text="Bienvenue dans votre espace client"
+                   style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Label text="Gérez vos réservations et consultez votre profil depuis le menu."
+                   style="-fx-font-size: 13; -fx-text-fill: rgba(255,255,255,0.55);"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>

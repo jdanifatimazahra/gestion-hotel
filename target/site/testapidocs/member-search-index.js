@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"test.java","c":"AppTest","l":"AppTest()","u":"%3Cinit%3E()","k":"3"},{"p":"test.java","c":"AppTest","l":"testBasique()"}];updateSearchResults();

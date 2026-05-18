@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ClientProfileController"
+            stylesheets="@application.css">
+
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="15">
+            <Button fx:id="btnRetour" text="← Retour"
+                    styleClass="button, button-reservations"
+                    onAction="#handleRetour"/>
+            <Label text="👤 Mon Profil" styleClass="header-label"/>
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane>
+            <VBox styleClass="form-card" spacing="18" alignment="TOP_LEFT"
+                  maxWidth="420" maxHeight="300" StackPane.alignment="CENTER">
+
+                <Label text="Informations personnelles" styleClass="form-title"/>
+                <Separator style="-fx-background-color:#2f3b6e;"/>
+
+                <Label fx:id="lblNom"
+                       style="-fx-text-fill:white; -fx-font-size:15;"/>
+                <Label fx:id="lblEmail"
+                       style="-fx-text-fill:rgba(255,255,255,0.75); -fx-font-size:13;"/>
+                <Label fx:id="lblTelephone"
+                       style="-fx-text-fill:rgba(255,255,255,0.75); -fx-font-size:13;"/>
+
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

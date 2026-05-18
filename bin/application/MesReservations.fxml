@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.MesReservationsController"
+            stylesheets="@application.css">
+
+    <!-- ══ HEADER ══════════════════════════════════════════════ -->
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="15">
+            <Button fx:id="btnRetour" text="← Retour"
+                    styleClass="button, button-reservations"
+                    onAction="#handleRetour"/>
+            <Label fx:id="lblBienvenue" text="Mes Réservations" styleClass="header-label"/>
+        </HBox>
+    </top>
+
+    <!-- ══ CENTRE ══════════════════════════════════════════════ -->
+    <center>
+        <HBox spacing="20" style="-fx-padding: 20;">
+
+            <!-- ── Table des réservations ────────────────────── -->
+            <VBox spacing="12" HBox.hgrow="ALWAYS">
+
+                <Label text="📋 Mes réservations"
+                       style="-fx-text-fill:white; -fx-font-size:14; -fx-font-weight:bold;"/>
+
+                <TableView fx:id="tableReservations" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId"      text="ID"       prefWidth="45"/>
+                        <TableColumn fx:id="colChambre" text="Chambre"  prefWidth="80"/>
+                        <TableColumn fx:id="colType"    text="Type"     prefWidth="100"/>
+                        <TableColumn fx:id="colArrivee" text="Arrivée"  prefWidth="110"/>
+                        <TableColumn fx:id="colDepart"  text="Départ"   prefWidth="110"/>
+                        <TableColumn fx:id="colStatut"  text="Statut"   prefWidth="120"/>
+                        <TableColumn fx:id="colPrix"    text="Total MAD" prefWidth="110"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Aucune réservation pour le moment."
+                               style="-fx-text-fill:rgba(255,255,255,0.5);"/>
+                    </placeholder>
+                </TableView>
+
+                <Button text="❌ Annuler la sélection"
+                        styleClass="button, button-logout"
+                        onAction="#handleAnnuler"/>
+
+                <Label fx:id="labelStatus" styleClass="label-status"/>
+
+            </VBox>
+
+            <!-- ── Formulaire nouvelle réservation ───────────── -->
+            <VBox styleClass="form-card" spacing="12" minWidth="300" maxWidth="300">
+
+                <Label text="➕ Nouvelle Réservation" styleClass="form-title"/>
+                <Separator style="-fx-background-color:rgba(255,255,255,0.15);"/>
+
+                <Label text="1 — Choisissez vos dates" styleClass="field-label"/>
+                <DatePicker fx:id="dateArrivee" promptText="Date d'arrivée" maxWidth="Infinity"/>
+                <DatePicker fx:id="dateDepart"  promptText="Date de départ"  maxWidth="Infinity"/>
+
+                <Label text="2 — Chambre disponible *" styleClass="field-label"/>
+                <ComboBox fx:id="comboChambre" maxWidth="Infinity"
+                          promptText="Sélectionnez les dates d'abord"/>
+
+                <Label fx:id="lblPrixCalc"
+                       text="Sélectionnez les dates et une chambre disponible"
+                       style="-fx-text-fill:#ffa502; -fx-font-size:12; -fx-wrap-text:true;"/>
+
+                <Button text="🏨 Réserver"
+                        styleClass="button, button-clients"
+                        onAction="#handleReserver"
+                        maxWidth="Infinity"
+                        prefHeight="45"/>
+
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

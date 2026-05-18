@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.GestionClientsController"
+            stylesheets="@application.css">
+
+    <!-- ══ HEADER ══════════════════════════════════ -->
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="15">
+            <Button fx:id="btnRetour" text="← Retour"
+                    styleClass="button, button-reservations"
+                    onAction="#handleRetour"/>
+            <Label text="👥 Gestion des Clients" styleClass="header-label"/>
+        </HBox>
+    </top>
+
+    <!-- ══ CENTRE : Table + Formulaire ════════════ -->
+    <center>
+        <HBox spacing="20" style="-fx-padding: 20;">
+
+            <!-- ── Partie gauche : Table + Recherche ── -->
+            <VBox spacing="12" HBox.hgrow="ALWAYS">
+
+                <!-- Barre recherche -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="fieldSearch"
+                               promptText="🔍 Rechercher par nom, email..."
+                               styleClass="field-search"
+                               HBox.hgrow="ALWAYS"
+                               onAction="#handleSearch"/>
+                    <Button text="Rechercher"
+                            styleClass="button, button-clients"
+                            onAction="#handleSearch"/>
+
+                </HBox>
+
+                <!-- Table -->
+                <TableView fx:id="tableClients" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId"        text="ID"         prefWidth="50"/>
+                        <TableColumn fx:id="colNom"       text="Nom"        prefWidth="130"/>
+                        <TableColumn fx:id="colPrenom"    text="Prénom"     prefWidth="130"/>
+                        <TableColumn fx:id="colEmail"     text="Email"      prefWidth="200"/>
+                        <TableColumn fx:id="colTelephone" text="Téléphone"  prefWidth="130"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Aucun client trouvé." style="-fx-text-fill:rgba(255,255,255,0.5);"/>
+                    </placeholder>
+                </TableView>
+
+                <!-- Label statut -->
+                <Label fx:id="labelStatus" styleClass="label-status"/>
+
+            </VBox>
+
+            <!-- ── Partie droite : Formulaire ──────── -->
+            <VBox styleClass="form-card" spacing="12" minWidth="290" maxWidth="290">
+
+                <Label text="Informations Client" styleClass="form-title"/>
+                <Separator style="-fx-background-color:rgba(255,255,255,0.15);"/>
+
+                <Label text="Nom *" styleClass="field-label"/>
+                <TextField fx:id="fieldNom" promptText="Nom de famille" styleClass="field-input"/>
+
+                <Label text="Prénom *" styleClass="field-label"/>
+                <TextField fx:id="fieldPrenom" promptText="Prénom" styleClass="field-input"/>
+
+                <Label text="Email *" styleClass="field-label"/>
+                <TextField fx:id="fieldEmail" promptText="email@example.com" styleClass="field-input"/>
+
+                <Label text="Téléphone" styleClass="field-label"/>
+                <TextField fx:id="fieldTelephone" promptText="+212 6XX XXX XXX" styleClass="field-input"/>
+
+                <!-- Boutons CRUD -->
+                <VBox spacing="8" style="-fx-padding: 8 0 0 0;">
+                    <Button text="➕  Ajouter"
+                            styleClass="button, button-clients"
+                            onAction="#handleAdd"
+                            maxWidth="Infinity"/>
+                    <Button text="✏  Modifier"
+                            styleClass="button, button-chambres"
+                            onAction="#handleUpdate"
+                            maxWidth="Infinity"/>
+                    <Button text="🗑  Supprimer"
+                            styleClass="button, button-logout"
+                            onAction="#handleDelete"
+                            maxWidth="Infinity"/>
+
+                </VBox>
+
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>
