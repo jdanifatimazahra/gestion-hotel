@@ -8,9 +8,6 @@ pipeline {
 
     stages {
 
-        // ─────────────────────────────────────
-        // STAGE 1 : BUILD (Compilation)
-        // ─────────────────────────────────────
         stage('Build') {
             steps {
                 echo '=== Compilation du projet ==='
@@ -18,7 +15,6 @@ pipeline {
             }
             post {
                 failure {
-                    echo 'ECHEC - Compilation'
                     mail to: 'admin@hotel.com',
                          subject: "[Jenkins] ECHEC Build - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                          body: "La compilation a echoue.\nURL: ${env.BUILD_URL}"
@@ -26,13 +22,9 @@ pipeline {
             }
         }
 
-        // ─────────────────────────────────────
-        // STAGE 2 : TESTS (en parallèle)
-        // ─────────────────────────────────────
         stage('Tests') {
             parallel {
 
-                // Nœud 1 : Tests Unitaires
                 stage('Tests Unitaires') {
                     steps {
                         echo '=== Tests Unitaires ==='
@@ -46,7 +38,6 @@ pipeline {
                     }
                 }
 
-                // Nœud 2 : Couverture de code JaCoCo
                 stage('Couverture JaCoCo') {
                     steps {
                         echo '=== Couverture de code ==='
@@ -64,7 +55,6 @@ pipeline {
                     }
                 }
 
-                // Nœud 3 : Documentation Javadoc
                 stage('Documentation') {
                     steps {
                         echo '=== Generation Javadoc ==='
@@ -84,7 +74,7 @@ pipeline {
                     }
                 }
 
-            } // fin parallel
+            }
 
             post {
                 failure {
@@ -95,9 +85,6 @@ pipeline {
             }
         }
 
-        // ─────────────────────────────────────
-        // STAGE 3 : PACKAGING
-        // ─────────────────────────────────────
         stage('Packaging') {
             steps {
                 echo '=== Packaging JAR ==='
@@ -115,9 +102,6 @@ pipeline {
             }
         }
 
-        // ─────────────────────────────────────
-        // STAGE 4 : DEPLOY NEXUS
-        // ─────────────────────────────────────
         stage('Deploy Nexus') {
             steps {
                 echo '=== Deploiement vers Nexus ==='
@@ -135,11 +119,8 @@ pipeline {
             }
         }
 
-    } // fin stages
+    }
 
-    // ─────────────────────────────────────
-    // NOTIFICATIONS GLOBALES
-    // ─────────────────────────────────────
     post {
         success {
             echo '=== PIPELINE REUSSI ==='
