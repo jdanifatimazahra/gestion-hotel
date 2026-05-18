@@ -21,13 +21,13 @@ pipeline {
 
         stage('Couverture de Code') {
             steps {
-                bat 'mvn cobertura:cobertura'
+                bat 'mvn jacoco:prepare-agent test jacoco:report'
             }
         }
 
         stage('Documentation') {
             steps {
-                bat 'mvn site'
+                bat 'mvn site -DskipTests'
             }
         }
 
@@ -41,14 +41,6 @@ pipeline {
             steps {
                 bat 'mvn deploy -DskipTests'
             }
-        }
-    }
-
-    post {
-        failure {
-            mail to: 'admin@hotel.com',
-                 subject: "ECHEC Pipeline - ${env.JOB_NAME}",
-                 body: "Erreur : ${env.BUILD_URL}"
         }
     }
 }
