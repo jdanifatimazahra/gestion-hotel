@@ -13,13 +13,11 @@ pipeline {
                 echo '=== Compilation du projet ==='
                 bat 'mvn clean compile -DskipTests'
             }
-            post {
-                failure {
-                    mail to: 'admin@hotel.com',
-                         subject: "[Jenkins] ECHEC Build - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                         body: "La compilation a echoue.\nURL: ${env.BUILD_URL}"
-                }
-            }
+post {
+    failure {
+        echo 'Build échoué'
+    }
+}
         }
 
         stage('Tests') {
